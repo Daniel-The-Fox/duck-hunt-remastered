@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch7nqf3xwl2ij"]
+
+[ext_resource type="PackedScene" uid="uid://c1kk0kmt1axy3" path="res://scenes/main_title.tscn" id="1_0s0hu"]
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="BackgroundBox" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 128.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.313726)
+
+[node name="MainTitle" parent="." instance=ExtResource("1_0s0hu")]

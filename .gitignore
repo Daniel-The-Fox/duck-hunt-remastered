@@ -1,0 +1,9 @@
+.godot/
+.DS_Store
+exports/
+game_video_footage/
+addons/
+silent_wolf_api_key.dat
+**/*silent_wolf_api_key*.dat
+**/*api_key*
+**/*key*

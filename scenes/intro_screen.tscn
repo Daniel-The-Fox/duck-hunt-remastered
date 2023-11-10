@@ -1,0 +1,270 @@
+[gd_scene load_steps=14 format=3 uid="uid://284crsdxf6em"]
+
+[ext_resource type="Script" path="res://scenes/intro_screen.gd" id="1_a7dx7"]
+[ext_resource type="PackedScene" uid="uid://c1kk0kmt1axy3" path="res://scenes/main_title.tscn" id="1_y55lo"]
+[ext_resource type="FontFile" uid="uid://bago426f1f3ng" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_g5uok"]
+
+[sub_resource type="Animation" id="Animation_cr4xc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1drcg"]
+resource_name = "blink_continue_text"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0941176), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48q84"]
+_data = {
+"RESET": SubResource("Animation_cr4xc"),
+"blink_continue_text": SubResource("Animation_1drcg")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pehp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lffbw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkywn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sw6t0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onk0x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_600gr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dv5x7"]
+
+[node name="IntroScreen" type="CanvasLayer"]
+script = ExtResource("1_a7dx7")
+
+[node name="BackgroundBox" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 128.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+color = Color(0, 0, 0, 0.627451)
+
+[node name="MainTitle" parent="." instance=ExtResource("1_y55lo")]
+position = Vector2(0, 9)
+
+[node name="Disclaimer" type="Label" parent="."]
+texture_filter = 1
+offset_left = 8.0
+offset_top = 93.0
+offset_right = 248.0
+offset_bottom = 133.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_g5uok")
+theme_override_font_sizes/font_size = 7
+text = "This is a fan game created by Daniel The Fox while learning Godot Engine 4. This personal learning project is not related to or endorsed by Nintendo®️. All rights by Nintendo®️ remain."
+horizontal_alignment = 3
+autowrap_mode = 2
+
+[node name="ContinueLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 208.0
+offset_right = 192.0
+offset_bottom = 224.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_g5uok")
+theme_override_font_sizes/font_size = 6
+text = "Shoot duck to continue"
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_48q84")
+}
+
+[node name="CreditsButton" type="Button" parent="."]
+texture_filter = 1
+offset_top = 225.0
+offset_right = 48.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_g5uok")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8pehp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lffbw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mkywn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sw6t0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_onk0x")
+text = "CREDITS"
+
+[node name="CreditsScreen" type="CanvasGroup" parent="."]
+visible = false
+z_index = 999
+
+[node name="ColorRect" type="ColorRect" parent="CreditsScreen"]
+offset_top = 80.0
+offset_right = 256.0
+offset_bottom = 240.0
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 1)
+
+[node name="CreditsText" type="RichTextLabel" parent="CreditsScreen"]
+texture_filter = 1
+offset_left = 8.0
+offset_top = 85.0
+offset_right = 256.0
+offset_bottom = 224.0
+focus_mode = 2
+mouse_filter = 1
+theme_override_constants/line_separation = 3
+theme_override_font_sizes/normal_font_size = 6
+theme_override_font_sizes/bold_font_size = 7
+theme_override_styles/focus = SubResource("StyleBoxEmpty_600gr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dv5x7")
+bbcode_enabled = true
+text = "[b]Resources used to create this fan game[/b]
+
+The Godot Engine, Version 4.1.3: 
+[color=a1cc58][url]https://godotengine.org/[/url][/color]
+
+This project is inspired by the great Godot 4 tutorial video and example Duck Hunt project by 16BitDev:
+[color=a1cc58][url]https://www.youtube.com/watch?v=gLzwaMF8Zbk[/url][/color]
+
+[color=a1cc58][url]https://github.com/16BitDev/duck-hunt/[/url][/color]
+
+The sprites for the animated ducks, animated dog, background & foreground are from Pik on spriters-resource.com:
+[color=a1cc58][url]https://www.spriters-resource.com/custom_edited/duckhuntcustoms/sheet/63915/[/url][/color]
+I did tweak them here and there a bit though.
+
+The pixel clouds are from craftpix.net:
+[color=a1cc58][url]https://craftpix.net/freebies/free-clouds-pixel-art-asset-pack/[/url][/color]
+
+The Pixel Operator font used in the game is from fontlibrary.org:
+[color=a1cc58][url]https://fontlibrary.org/en/font/pixel-operator#Pixel%20Operator%20SC-Bold[/url][/color]
+
+The crosshairs cursor and regenerate icon are from kenney.nl:
+[color=a1cc58][url]https://kenney.nl/assets/crosshair-pack[/url][/color]
+[color=a1cc58][url]https://kenney.nl/assets/input-prompts-pixel-16[/url][/color]
+
+All sound effects and music are from freesound.org:
+[color=a1cc58][url]https://freesound.org/[/url][/color]
+
+I based the custom mouse cursor on the great tutorial by Jon Topielski:
+[color=a1cc58][url]https://www.youtube.com/watch?v=JrQ1-Ea6_KM[/url][/color]
+I had to make quite some changes though in order to get it to run in Godot Engine 4.
+
+The random player name generator is inspired by the random container names in Docker:
+[color=a1cc58][url]https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go[/url][/color]
+
+The online highscore is powered by the great SilentWolf backend services for Godot Engine:
+[color=a1cc58][url]https://www.silentwolf.com[/url][/color]
+
+------------------------------------------------
+
+This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+------------------------------------------------
+
+Godot uses FreeType to render fonts. Its license requires attribution, so the following text must be included together with the Godot license:
+
+Portions of this software are copyright © 1996-2023 The FreeType Project (www.freetype.org). All rights reserved.
+
+------------------------------------------------
+
+Godot includes the ENet library to handle high-level multiplayer. ENet has similar licensing terms as Godot:
+
+Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+------------------------------------------------
+
+If the project is exported with Godot 3.1 or later, it includes mbed TLS. The Apache license needs to be complied to by including the following text:
+
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+------------------------------------------------
+
+"
+autowrap_mode = 2
+selection_enabled = true
+
+[node name="BackButton" type="Button" parent="CreditsScreen"]
+texture_filter = 1
+offset_top = 225.0
+offset_right = 48.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_g5uok")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8pehp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lffbw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mkywn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sw6t0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_onk0x")
+text = "BACK"
+
+[connection signal="meta_clicked" from="CreditsScreen/CreditsText" to="." method="_richtextlabel_on_meta_clicked"]

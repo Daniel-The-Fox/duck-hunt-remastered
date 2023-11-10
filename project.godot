@@ -1,0 +1,68 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Duck Hunt Remastered"
+config/description="Duck Hunt Remastered - a fangame created while learning Godot Engine 4"
+run/main_scene="res://scenes/main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Duck_Hunt_Remastered"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/image="res://assets/gfx/duck_hunt_remastered_splash_screen_2.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://assets/gfx/duck_hunt_remastered_icon.png"
+config/macos_native_icon="res://assets/gfx/duck_hunt_remastered_icon.icns"
+config/windows_native_icon="res://assets/gfx/duck_hunt_remastered_icon.ico"
+boot_splash/minimum_display_time=2000
+config/version="1.0.0"
+
+[autoload]
+
+CursorManager="*res://scenes/cursor_manager.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/size/window_width_override=2048
+window/size/window_height_override=1920
+window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/mjpeg_quality=0.9
+movie_writer/movie_file="./game_video_footage/duck_hunt_remastered_demo.avi"
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
+[gui]
+
+theme/custom_font="res://assets/fonts/PixelOperator8-Bold.ttf"
+theme/default_font_antialiasing=0
+
+[input]
+
+left_click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(411, 34),"global_position":Vector2(421, 140),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

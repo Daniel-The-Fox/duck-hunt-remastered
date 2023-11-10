@@ -1,0 +1,481 @@
+[gd_scene load_steps=26 format=3 uid="uid://cuod8dx83cdb7"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_n1e3f"]
+[ext_resource type="PackedScene" uid="uid://djer5vj1qucw0" path="res://scenes/duck.tscn" id="2_tpm3c"]
+[ext_resource type="AudioStream" uid="uid://c78stodx6hueb" path="res://assets/sfx/banjo_bg_loop.mp3" id="3_cnfwj"]
+[ext_resource type="AudioStream" uid="uid://bhgopu6n6qa1b" path="res://assets/sfx/pond_atmosphere.mp3" id="4_1tmhp"]
+[ext_resource type="AudioStream" uid="uid://cr1mrk4et4mbc" path="res://assets/sfx/shotgun_shot.mp3" id="5_fetgr"]
+[ext_resource type="AudioStream" uid="uid://caak5qec2h1uu" path="res://assets/sfx/shotgun_reload.mp3" id="6_natxq"]
+[ext_resource type="AudioStream" uid="uid://cxikq3keyojxr" path="res://assets/sfx/empty-gun-shot.wav" id="7_mwqfm"]
+[ext_resource type="AudioStream" uid="uid://22vtv5eyh6pt" path="res://assets/sfx/game_over.ogg" id="7_yptd2"]
+[ext_resource type="AudioStream" uid="uid://b5u11m3xnd1lk" path="res://assets/sfx/duck_quack.mp3" id="9_5gwps"]
+[ext_resource type="PackedScene" uid="uid://2hh80lpphyop" path="res://scenes/dog.tscn" id="10_6qphu"]
+[ext_resource type="AudioStream" uid="uid://c02dw2g2kfj1j" path="res://assets/sfx/success.mp3" id="10_jnhgf"]
+[ext_resource type="AudioStream" uid="uid://bg2vqhg1eyk0m" path="res://assets/sfx/bell.mp3" id="11_kf22j"]
+[ext_resource type="Texture2D" uid="uid://cfdpewnnb586f" path="res://assets/gfx/duck_hunt_remade_grass_transparent.png" id="12_ak8jq"]
+[ext_resource type="Texture2D" uid="uid://7j0ncgj71iyu" path="res://assets/gfx/Duck_Hunt_Remade_transparent_without_clouds.png" id="13_nj2m4"]
+[ext_resource type="Texture2D" uid="uid://bs0iq6oui5bli" path="res://assets/gfx/pixel_tree_transparent.png" id="14_cu2dt"]
+[ext_resource type="Texture2D" uid="uid://d4faw7u50odca" path="res://assets/gfx/pixel_bush_transparent.png" id="15_0aa5k"]
+[ext_resource type="PackedScene" uid="uid://bhuxg0mp7sxn" path="res://scenes/cloud.tscn" id="16_wvwlj"]
+[ext_resource type="FontFile" uid="uid://bago426f1f3ng" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="17_7glew"]
+[ext_resource type="PackedScene" uid="uid://mpljw2afdgg1" path="res://scenes/msg_box.tscn" id="18_iynge"]
+[ext_resource type="PackedScene" uid="uid://c827s55ssm4gd" path="res://scenes/highscore_screen.tscn" id="21_8y6ey"]
+[ext_resource type="PackedScene" uid="uid://284crsdxf6em" path="res://scenes/intro_screen.tscn" id="21_ylc2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3vnu"]
+size = Vector2(256, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvc0b"]
+size = Vector2(10, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oojwy"]
+size = Vector2(10, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twtfq"]
+size = Vector2(256, 10)
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_n1e3f")
+duck_node = ExtResource("2_tpm3c")
+highscore_node = ExtResource("21_8y6ey")
+
+[node name="TopLeftRight" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="top" type="CollisionShape2D" parent="TopLeftRight"]
+texture_filter = 1
+position = Vector2(128, -5)
+shape = SubResource("RectangleShape2D_e3vnu")
+
+[node name="left" type="CollisionShape2D" parent="TopLeftRight"]
+texture_filter = 1
+position = Vector2(-5, 115)
+shape = SubResource("RectangleShape2D_hvc0b")
+
+[node name="right" type="CollisionShape2D" parent="TopLeftRight"]
+texture_filter = 1
+position = Vector2(261, 115)
+shape = SubResource("RectangleShape2D_oojwy")
+
+[node name="TopEdgeGrass" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopEdgeGrass"]
+texture_filter = 1
+position = Vector2(128, 154)
+shape = SubResource("RectangleShape2D_e3vnu")
+one_way_collision = true
+
+[node name="GroundDogWalk" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDogWalk"]
+position = Vector2(128, 193)
+shape = SubResource("RectangleShape2D_twtfq")
+one_way_collision = true
+
+[node name="AudioPlayers" type="CanvasGroup" parent="."]
+
+[node name="BgMusicPLayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("3_cnfwj")
+volume_db = -20.0
+
+[node name="BgAtmospherePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("4_1tmhp")
+volume_db = -15.0
+
+[node name="DuckQuackPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("9_5gwps")
+
+[node name="GameOverPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("7_yptd2")
+
+[node name="ShotgunEmptyPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("7_mwqfm")
+
+[node name="ShotgunReloadPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("6_natxq")
+volume_db = 10.0
+
+[node name="ShotgunShotPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("5_fetgr")
+
+[node name="SuccessPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("10_jnhgf")
+
+[node name="BellPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("11_kf22j")
+volume_db = -10.0
+
+[node name="BackgroundWithoutClouds" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(128, 85)
+texture = ExtResource("13_nj2m4")
+region_enabled = true
+region_rect = Rect2(383, 5, 256, 170)
+
+[node name="Tree" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(40, 94)
+texture = ExtResource("14_cu2dt")
+
+[node name="Bush" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(207, 140)
+texture = ExtResource("15_0aa5k")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(128, 192)
+texture = ExtResource("12_ak8jq")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 96)
+
+[node name="InfoElements" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="HitsInfo" type="CanvasGroup" parent="InfoElements"]
+
+[node name="MsgBox" parent="InfoElements/HitsInfo" instance=ExtResource("18_iynge")]
+offset_left = 61.0
+offset_top = 208.0
+offset_right = 178.0
+offset_bottom = 224.0
+
+[node name="HitsTextLabel" type="Label" parent="InfoElements/HitsInfo"]
+texture_filter = 1
+offset_left = 64.0
+offset_top = 211.0
+offset_right = 91.0
+offset_bottom = 222.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.584314, 0.811765, 0.258824, 1)
+theme_override_fonts/font = ExtResource("17_7glew")
+theme_override_font_sizes/font_size = 7
+text = "Hits"
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true
+max_lines_visible = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DucksUnshot" type="Sprite2D" parent="InfoElements/HitsInfo"]
+texture_filter = 1
+position = Vector2(94, 210)
+texture = ExtResource("13_nj2m4")
+centered = false
+region_enabled = true
+region_rect = Rect2(558, 251, 81, 10)
+
+[node name="DucksShot" type="Sprite2D" parent="InfoElements/HitsInfo"]
+texture_filter = 1
+position = Vector2(94, 210)
+texture = ExtResource("13_nj2m4")
+centered = false
+region_enabled = true
+region_rect = Rect2(558, 271, 1, 10)
+
+[node name="BulletsInfo" type="CanvasGroup" parent="InfoElements"]
+
+[node name="MsgBox" parent="InfoElements/BulletsInfo" instance=ExtResource("18_iynge")]
+offset_left = 19.0
+offset_top = 204.0
+offset_right = 51.0
+offset_bottom = 228.0
+
+[node name="BulletsTextLabel" type="Label" parent="InfoElements/BulletsInfo"]
+texture_filter = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = 217.0
+offset_right = 49.0
+offset_bottom = 226.0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.388235, 0.741176, 0.980392, 1)
+theme_override_fonts/font = ExtResource("17_7glew")
+theme_override_font_sizes/font_size = 5
+text = "Shots"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true
+max_lines_visible = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Bullets" type="Sprite2D" parent="InfoElements/BulletsInfo"]
+texture_filter = 1
+position = Vector2(23, 208)
+texture = ExtResource("13_nj2m4")
+centered = false
+region_enabled = true
+region_rect = Rect2(499, 261, 24, 9)
+
+[node name="RoundInfo" type="CanvasGroup" parent="InfoElements"]
+
+[node name="MsgBox" parent="InfoElements/RoundInfo" instance=ExtResource("18_iynge")]
+offset_left = 19.0
+offset_top = 187.0
+offset_right = 51.0
+offset_bottom = 202.0
+
+[node name="RoundLabel" type="Label" parent="InfoElements/RoundInfo"]
+texture_filter = 1
+offset_left = 25.0
+offset_top = 192.0
+offset_right = 47.0
+offset_bottom = 199.0
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = -1
+theme_override_fonts/font = ExtResource("17_7glew")
+theme_override_font_sizes/font_size = 6
+text = "R 99"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+max_lines_visible = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreInfo" type="CanvasGroup" parent="InfoElements"]
+
+[node name="MsgBox" parent="InfoElements/ScoreInfo" instance=ExtResource("18_iynge")]
+offset_left = 184.0
+offset_top = 208.0
+offset_right = 248.0
+offset_bottom = 224.0
+
+[node name="ScoreLabel" type="Label" parent="InfoElements/ScoreInfo"]
+texture_filter = 1
+offset_left = 186.0
+offset_top = 211.0
+offset_right = 246.0
+offset_bottom = 222.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 7
+text = "9,999,999"
+horizontal_alignment = 2
+vertical_alignment = 1
+justification_flags = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletsDebugLabel" type="Label" parent="InfoElements"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_right = 0.0078125
+offset_left = 21.0
+offset_top = 227.0
+offset_right = 49.0
+offset_bottom = 237.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 4
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="DuckPointsLabel" type="Label" parent="InfoElements"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.494
+anchor_top = 0.36
+anchor_right = 0.494
+anchor_bottom = 0.36
+offset_left = -21.464
+offset_top = -13.4
+offset_right = 21.536
+offset_bottom = 13.6
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 6
+text = "1500"
+horizontal_alignment = 1
+vertical_alignment = 2
+justification_flags = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoundStartSign" type="CanvasGroup" parent="InfoElements"]
+z_index = 999
+z_as_relative = false
+texture_filter = 1
+
+[node name="MsgBox" parent="InfoElements/RoundStartSign" instance=ExtResource("18_iynge")]
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="InfoElements/RoundStartSign"]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 49.0
+offset_right = 152.0
+offset_bottom = 72.0
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 8
+text = "Round
+999"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoundCompleteSign" type="CanvasGroup" parent="InfoElements"]
+visible = false
+z_index = 999
+z_as_relative = false
+texture_filter = 1
+
+[node name="MsgBox" parent="InfoElements/RoundCompleteSign" instance=ExtResource("18_iynge")]
+offset_left = 100.0
+offset_top = 48.0
+offset_right = 156.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="InfoElements/RoundCompleteSign"]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 49.0
+offset_right = 152.0
+offset_bottom = 72.0
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 8
+text = "GREAT!
+10,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOverSign" type="CanvasGroup" parent="InfoElements"]
+visible = false
+z_index = 999
+z_as_relative = false
+texture_filter = 1
+
+[node name="MsgBox" parent="InfoElements/GameOverSign" instance=ExtResource("18_iynge")]
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="InfoElements/GameOverSign"]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 50.0
+offset_right = 152.0
+offset_bottom = 73.0
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 8
+text = "GAME OVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 0
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeElapsedLabel" type="Label" parent="InfoElements"]
+texture_filter = 1
+offset_left = 220.0
+offset_top = 2.0
+offset_right = 254.0
+offset_bottom = 12.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.819608, 0.819608, 0.819608, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("17_7glew")
+theme_override_font_sizes/font_size = 6
+text = "00:00"
+horizontal_alignment = 2
+justification_flags = 0
+max_lines_visible = 1
+
+[node name="Dog" parent="." instance=ExtResource("10_6qphu")]
+z_index = 2
+position = Vector2(29, 164)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Clouds" type="CanvasGroup" parent="."]
+
+[node name="CloudTop" parent="Clouds" instance=ExtResource("16_wvwlj")]
+z_index = -1
+texture_filter = 1
+position = Vector2(324, 37)
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 0
+speed = 8.0
+cloud_variant = 1
+
+[node name="CloudMiddle" parent="Clouds" instance=ExtResource("16_wvwlj")]
+z_index = -1
+texture_filter = 1
+position = Vector2(295, 88)
+scale = Vector2(0.4, 0.4)
+collision_layer = 0
+collision_mask = 0
+speed = 5.0
+cloud_variant = 2
+
+[node name="CloudBottom" parent="Clouds" instance=ExtResource("16_wvwlj")]
+z_index = -1
+texture_filter = 1
+position = Vector2(307, 135)
+scale = Vector2(0.3, 0.3)
+collision_layer = 0
+collision_mask = 0
+speed = 3.0
+cloud_variant = 3
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="IntroScreenTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="IntroScreen" parent="." instance=ExtResource("21_ylc2r")]
+visible = false
+
+[node name="VersionLabel" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 213.0
+offset_top = 1.0
+offset_right = 255.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.819608, 0.819608, 0.819608, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("17_7glew")
+theme_override_font_sizes/font_size = 4
+text = "vx.xx.x.x"
+horizontal_alignment = 2
+justification_flags = 0
+max_lines_visible = 1
+
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timeout"]
+[connection signal="timeout" from="IntroScreenTimer" to="." method="_on_intro_screen_timeout"]

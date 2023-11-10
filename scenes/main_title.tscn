@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1kk0kmt1axy3"]
+
+[ext_resource type="Texture2D" uid="uid://cgte6kuk3d3v6" path="res://assets/gfx/message_box_transparent.png" id="1_mp8gq"]
+[ext_resource type="FontFile" uid="uid://bago426f1f3ng" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_pxix2"]
+
+[node name="MainTitle" type="CanvasGroup"]
+texture_filter = 1
+
+[node name="MainTitleMsgBox" type="NinePatchRect" parent="."]
+offset_left = 40.0
+offset_top = 7.0
+offset_right = 216.0
+offset_bottom = 63.0
+texture = ExtResource("1_mp8gq")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MainTitleLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 7.0
+offset_right = 216.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.584314, 0.811765, 0.258824, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 3
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("2_pxix2")
+theme_override_font_sizes/font_size = 16
+text = "Duck Hunt
+Remastered"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0

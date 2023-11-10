@@ -1,0 +1,647 @@
+[gd_scene load_steps=17 format=3 uid="uid://c827s55ssm4gd"]
+
+[ext_resource type="Script" path="res://scenes/highscore_screen.gd" id="1_gi2id"]
+[ext_resource type="Texture2D" uid="uid://7j0ncgj71iyu" path="res://assets/gfx/Duck_Hunt_Remade_transparent_without_clouds.png" id="2_6xyjr"]
+[ext_resource type="PackedScene" uid="uid://bhuxg0mp7sxn" path="res://scenes/cloud.tscn" id="2_av8gy"]
+[ext_resource type="PackedScene" uid="uid://c1kk0kmt1axy3" path="res://scenes/main_title.tscn" id="2_k1se3"]
+[ext_resource type="FontFile" uid="uid://bago426f1f3ng" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_pp217"]
+[ext_resource type="Theme" uid="uid://bwmuq5dvfnnwg" path="res://themes/highscore.tres" id="4_528mb"]
+[ext_resource type="PackedScene" uid="uid://mpljw2afdgg1" path="res://scenes/msg_box.tscn" id="7_3dr5h"]
+[ext_resource type="Texture2D" uid="uid://cn4vp6s2iao1t" path="res://assets/gfx/regenerate_btn.png" id="8_sh86x"]
+
+[sub_resource type="Animation" id="Animation_qktgw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingIcon:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_sh86x")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingIcon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gtxj5"]
+resource_name = "spin_loading_icon"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingIcon:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_sh86x")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingIcon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 1.0472, 1.5708, 2.0944, 2.61799, 3.14159, 3.66519, 4.18879, 4.71239, 5.23599, 5.75959, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8udk"]
+_data = {
+"RESET": SubResource("Animation_qktgw"),
+"spin_loading_icon": SubResource("Animation_gtxj5")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d023d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llsnf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvs24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjxe0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c5j86"]
+
+[node name="HighscoreScreen" type="CanvasLayer"]
+script = ExtResource("1_gi2id")
+
+[node name="BackgroundBox" type="ColorRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -120.0
+offset_right = 128.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+color = Color(0.109804, 0.0705882, 0.0666667, 1)
+
+[node name="Clouds" type="CanvasGroup" parent="."]
+
+[node name="Cloud" parent="Clouds" instance=ExtResource("2_av8gy")]
+position = Vector2(266, 15)
+scale = Vector2(0.2, 0.2)
+speed = 2.0
+cloud_variant = 1
+
+[node name="Cloud2" parent="Clouds" instance=ExtResource("2_av8gy")]
+position = Vector2(79, 34)
+scale = Vector2(0.2, 0.2)
+speed = 3.0
+cloud_variant = 2
+
+[node name="MainTitle" parent="." instance=ExtResource("2_k1se3")]
+
+[node name="DucksAndDog" type="CanvasGroup" parent="."]
+
+[node name="BrownDuck" type="Sprite2D" parent="DucksAndDog"]
+texture_filter = 1
+position = Vector2(42, 53)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_6xyjr")
+region_enabled = true
+region_rect = Rect2(238, 135, 31, 32)
+
+[node name="BlueDuck" type="Sprite2D" parent="DucksAndDog"]
+texture_filter = 1
+position = Vector2(218, 65)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_6xyjr")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(239, 175, 31, 32)
+
+[node name="RedDuck" type="Sprite2D" parent="DucksAndDog"]
+texture_filter = 1
+position = Vector2(156, 24)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_6xyjr")
+region_enabled = true
+region_rect = Rect2(238, 219, 31, 32)
+
+[node name="DogPresentsDuck" type="Sprite2D" parent="DucksAndDog"]
+texture_filter = 1
+position = Vector2(228, 220)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_6xyjr")
+region_enabled = true
+region_rect = Rect2(62, 70, 67, 48)
+
+[node name="Loading" type="CanvasGroup" parent="."]
+position = Vector2(4, 1)
+
+[node name="LoadingIconAnimation" type="AnimationPlayer" parent="Loading"]
+autoplay = "spin_loading_icon"
+libraries = {
+"": SubResource("AnimationLibrary_m8udk")
+}
+
+[node name="LoadingIcon" type="Sprite2D" parent="Loading"]
+position = Vector2(92, 132)
+texture = ExtResource("8_sh86x")
+
+[node name="LoadingLabel" type="Label" parent="Loading"]
+texture_filter = 1
+offset_left = 104.0
+offset_top = 125.0
+offset_right = 152.0
+offset_bottom = 141.0
+size_flags_horizontal = 4
+theme = ExtResource("4_528mb")
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true
+
+[node name="Highscore" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_top = 62.0
+offset_right = 256.0
+offset_bottom = 239.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Highscore"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 25.0
+offset_right = 256.0
+offset_bottom = 137.0
+mouse_filter = 1
+color = Color(0.105882, 0.0705882, 0.0666667, 1)
+
+[node name="HighScoreTitleLabel" type="Label" parent="Highscore"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -78.5
+offset_right = 119.0
+offset_bottom = -62.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+theme_override_fonts/font = ExtResource("3_pp217")
+theme_override_font_sizes/font_size = 10
+text = "Highscore"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true
+
+[node name="BoxContainer" type="BoxContainer" parent="Highscore"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.263317
+anchor_bottom = 0.263317
+offset_top = -11.0
+offset_right = 256.0
+offset_bottom = 101.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Highscore/BoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HighscoreHBox" type="HBoxContainer" parent="Highscore/BoxContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="PositionVBox" type="VBoxContainer" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Position1" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#1"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position2" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#2"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position3" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#3"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position4" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#4"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position5" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#5"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position6" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#6"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Position7" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PositionVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "#7"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="PlayerNameVBox" type="VBoxContainer" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox"]
+clip_contents = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Name1" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "LongPlayerName"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name2" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "Name"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name3" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "ABitLonger"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name4" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "AReaaallyLongName"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name5" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "ShortName"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name6" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "AReallyMuchTooLongPlayerName"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="Name7" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/PlayerNameVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "Shorty"
+vertical_alignment = 1
+justification_flags = 0
+clip_text = true
+max_lines_visible = 1
+
+[node name="ScoreVBox" type="VBoxContainer" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox"]
+clip_contents = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Score1" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "9,999,999"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score2" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score3" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "6,750"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score4" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score5" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "3,456,789"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score6" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "66"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="Score7" type="Label" parent="Highscore/BoxContainer/MarginContainer/HighscoreHBox/ScoreVBox"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_528mb")
+theme_override_constants/line_spacing = 0
+text = "123,456"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+
+[node name="ContinueButton" type="Button" parent="Highscore"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 162.0
+offset_right = 148.0
+offset_bottom = 177.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_pp217")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d023d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_llsnf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lvs24")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yjxe0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c5j86")
+text = "CONTINUE"
+alignment = 0
+
+[node name="PlayerNameInput" type="Control" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_top = 87.0
+offset_right = 256.0
+offset_bottom = 199.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="PlayerNameInput"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 112.0
+mouse_filter = 1
+color = Color(0.105882, 0.0705882, 0.0666667, 1)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="PlayerNameInput"]
+texture_filter = 1
+position = Vector2(9, -14)
+
+[node name="MsgBox" parent="PlayerNameInput/CanvasGroup" instance=ExtResource("7_3dr5h")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 37.0
+offset_right = 201.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Headline" type="Label" parent="PlayerNameInput/CanvasGroup"]
+texture_filter = 1
+offset_left = 33.0
+offset_top = 38.0
+offset_right = 200.0
+offset_bottom = 57.0
+theme = ExtResource("4_528mb")
+text = "Generate Player Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="PlayerNameInputField" type="LineEdit" parent="PlayerNameInput/CanvasGroup"]
+texture_filter = 1
+offset_left = 41.0
+offset_top = 64.0
+offset_right = 171.0
+offset_bottom = 82.0
+mouse_filter = 2
+theme = ExtResource("4_528mb")
+theme_override_colors/font_color = Color(0.964706, 0.74902, 0.27451, 1)
+theme_override_colors/font_selected_color = Color(0.964706, 0.74902, 0.27451, 1)
+theme_override_colors/font_uneditable_color = Color(0.964706, 0.74902, 0.27451, 1)
+theme_override_colors/font_placeholder_color = Color(0.964706, 0.74902, 0.27451, 1)
+theme_override_font_sizes/font_size = 7
+placeholder_text = "RandomPlayer"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+caret_mid_grapheme = false
+
+[node name="RegenerateButton" type="TextureButton" parent="PlayerNameInput/CanvasGroup"]
+texture_filter = 1
+offset_left = 179.0
+offset_top = 65.0
+offset_right = 195.0
+offset_bottom = 81.0
+mouse_filter = 1
+texture_normal = ExtResource("8_sh86x")
+
+[node name="SaveButton" type="Button" parent="PlayerNameInput/CanvasGroup"]
+texture_filter = 1
+offset_left = 97.0
+offset_top = 88.0
+offset_right = 137.0
+offset_bottom = 101.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.631373, 0.8, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_pp217")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d023d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_llsnf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lvs24")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yjxe0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c5j86")
+text = "SAVE"
+
+[connection signal="pressed" from="Highscore/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PlayerNameInput/CanvasGroup/RegenerateButton" to="." method="_on_regenerate_name_pressed"]
+[connection signal="pressed" from="PlayerNameInput/CanvasGroup/SaveButton" to="." method="_on_save_button_pressed"]
