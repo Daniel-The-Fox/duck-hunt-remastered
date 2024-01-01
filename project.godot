@@ -12,10 +12,11 @@ config_version=5
 
 config/name="Duck Hunt Remastered"
 config/description="Duck Hunt Remastered - a fangame created while learning Godot Engine 4"
+config/version="1.0.0"
 run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Duck_Hunt_Remastered"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://assets/gfx/duck_hunt_remastered_splash_screen_2.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -23,7 +24,6 @@ config/icon="res://assets/gfx/duck_hunt_remastered_icon.png"
 config/macos_native_icon="res://assets/gfx/duck_hunt_remastered_icon.icns"
 config/windows_native_icon="res://assets/gfx/duck_hunt_remastered_icon.ico"
 boot_splash/minimum_display_time=2000
-config/version="1.0.0"
 
 [autoload]
 

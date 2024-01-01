@@ -158,10 +158,10 @@ region_rect = Rect2(62, 70, 67, 48)
 position = Vector2(4, 1)
 
 [node name="LoadingIconAnimation" type="AnimationPlayer" parent="Loading"]
-autoplay = "spin_loading_icon"
 libraries = {
 "": SubResource("AnimationLibrary_m8udk")
 }
+autoplay = "spin_loading_icon"
 
 [node name="LoadingIcon" type="Sprite2D" parent="Loading"]
 position = Vector2(92, 132)
@@ -607,7 +607,6 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
-caret_mid_grapheme = false
 
 [node name="RegenerateButton" type="TextureButton" parent="PlayerNameInput/CanvasGroup"]
 texture_filter = 1
