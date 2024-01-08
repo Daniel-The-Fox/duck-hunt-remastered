@@ -12,17 +12,17 @@
 
 ## About
 
-I created this fan game as a first project 
+I created this fan game as a first project
 in order to learn how to develop games in the [Godot Engine](https://godotengine.org) :robot:.
 
-If you don't know the Duck Hunt game, you can 
+If you don't know the Duck Hunt game, you can
 [read about the original NES game Duck Hunt on Wikipedia](https://en.wikipedia.org/wiki/Duck_Hunt) :book:.
 
-You can also watch a 
+You can also watch a
 [YouTube playthrough video of Duck Hunt](https://www.youtube.com/watch?v=Pd2AeH-P6r8) :movie_camera:
 to get the idea.
 
-Be sure to watch my [demo video of Duck Hunt Remastered on YouTube](https://youtu.be/rmo4hgRTLPo) :movie_camera: 
+Be sure to watch my [demo video of Duck Hunt Remastered on YouTube](https://youtu.be/rmo4hgRTLPo) :movie_camera:
 to see the game in action. :sunglasses:
 
 Here are some screenshots of the game:
@@ -41,12 +41,12 @@ Here are some screenshots of the game:
 
 ## How to play the game
 
-I uploaded an HTML5-Export of the game to 
-[itch.io](https://danielthefox.itch.io/duck-hunt-remastered), 
-so that you can 
+I uploaded an HTML5-Export of the game to
+[itch.io](https://danielthefox.itch.io/duck-hunt-remastered),
+so that you can
 [play Duck Hunt Remastered in your web browser](https://danielthefox.itch.io/duck-hunt-remastered). :joystick::globe_with_meridians:
 
-In addition, I uploaded 
+In addition, I uploaded
 [binary exports of the game for Mac OS, Windows and Linux](https://danielthefox.itch.io/duck-hunt-remastered) :joystick::computer:
 to itch.io as well.
 
@@ -74,10 +74,10 @@ Note: The SharedArrayBuffer support feature is activated on the game page on itc
 
 ## How is this Duck Hunt fan game different?!
 
-Fair question indeed and what started out as a spontaneous personal learning project 
+Fair question indeed and what started out as a spontaneous personal learning project
 that would never get shown to anybody, soon became a real passion for me. :heart:
 
-I did research [other Duck Hunt fan games on itch.io](https://itch.io/search?q=Duck+Hunt), 
+I did research [other Duck Hunt fan games on itch.io](https://itch.io/search?q=Duck+Hunt),
 before deciding to upload my version of a Duck Hunt fan game. :duck:
 Here's the points I identified that my game does differently in many cases:
 
@@ -111,8 +111,8 @@ As this is my first game in Godot Engine, I'm really proud of how it turned out 
 ## Resources used
 * [The Godot Engine](https://godotengine.org), Version 4.1.3 :robot:
 * This project is inspired by the great
-[Duck Hunt in Godot 4 tutorial video](https://www.youtube.com/watch?v=gLzwaMF8Zbk) and 
-[example Duck Hunt project](https://github.com/16BitDev/duck-hunt/) by 
+[Duck Hunt in Godot 4 tutorial video](https://www.youtube.com/watch?v=gLzwaMF8Zbk) and
+[example Duck Hunt project](https://github.com/16BitDev/duck-hunt/) by
 [16BitDev](https://www.youtube.com/@16bitdev) :heart:
 * The
  [sprites for the animated ducks, animated dog, background & foreground](https://www.spriters-resource.com/custom_edited/duckhuntcustoms/sheet/63915/)
@@ -121,8 +121,8 @@ As this is my first game in Godot Engine, I'm really proud of how it turned out 
 * The [Pixel Operator font](https://fontlibrary.org/en/font/pixel-operator#Pixel%20Operator%20SC-Bold) is from fontlibrary.org
 * The [crosshairs cursor](https://kenney.nl/assets/crosshair-pack) and [regenerate icon](https://kenney.nl/assets/input-prompts-pixel-16) are from kenney.nl
 * All [sound effects and music](https://freesound.org) are from freesound.org
-* I based the custom mouse cursor on the great 
-[tutorial by Jon Topielski](https://www.youtube.com/watch?v=JrQ1-Ea6_KM). 
+* I based the custom mouse cursor on the great
+[tutorial by Jon Topielski](https://www.youtube.com/watch?v=JrQ1-Ea6_KM).
 I had to make quite some changes though in order to get it to run in Godot Engine 4.
 * The random player name generator is inspired by the [random container names in Docker](https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go)
 * The online highscore is powered by the great [SilentWolf backend services for Godot Engine](https://www.silentwolf.com)
@@ -130,7 +130,7 @@ I had to make quite some changes though in order to get it to run in Godot Engin
 ## Disclaimer
 
 This personal learning project is not related to or endorsed by Nintendo®️.
-Use this personal project as is and at your own risk to have fun while playing it and to learn how to develop games with the 
+Use this personal project as is and at your own risk to have fun while playing it and to learn how to develop games with the
 [Godot Engine](https://godotengine.org). :robot:
 No warranty and no official support are provided for this fan game project.
 
